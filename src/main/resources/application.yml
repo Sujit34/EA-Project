@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:hsqldb:hsql://localhost:9003/trainingdb
+    username: SA
+    password:
+    driver-class-name: org.hsqldb.jdbcDriver
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.HSQLDialect
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: INFO
+
+meal:
+  student :  1
+  nonStudent: 1

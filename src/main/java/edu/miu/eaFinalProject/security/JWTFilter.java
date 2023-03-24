@@ -24,8 +24,9 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authorizationHeader = request.getHeader("Authorization");
         String method = request.getMethod();
+        String url = request.getRequestURI();
 
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if(!url.contains("authentication") && authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             var token = authorizationHeader.substring(7);
             boolean isTokenValid = jwtHelper.validateToken(token);
             var email = jwtHelper.getUsernameFromToken(token);

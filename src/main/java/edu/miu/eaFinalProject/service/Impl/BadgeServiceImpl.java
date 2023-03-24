@@ -77,6 +77,9 @@ public class BadgeServiceImpl implements BadgeService {
         Location location = locationRepository.getLocationById(locationId);
         if (location.isOpen() == false) return "Access Denied. Location is not open yet.";
 
+        Badge badge = badgeRepository.findBadgeByBadgeId(badgeId);
+        if(badge.isActive()==false) return "Access Denied. badge is not active.";
+
         Member member = memberRepository.findMemberByBadgeId(badgeId);
         List<Membership> memberships = memberShipRepository.findMembershipByMemberId(member.getId());
         boolean planExist = false;

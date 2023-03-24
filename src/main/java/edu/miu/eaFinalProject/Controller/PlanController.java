@@ -90,10 +90,9 @@ public class PlanController {
     @GetMapping("/{memberId}/checkerPlans")
     public ResponseEntity<?> getListAllCheckerPlans(@PathVariable("memberId") long memberId) {
         List<PlanDTO> planDTOS = null;
-        try{
+        try {
             planDTOS = planService.getListAllCheckerPlans(memberId);
-        }
-        catch(EmptyStackException e) {
+        } catch (EmptyStackException e) {
             throw new ApiRequestException("No plan found for this member!", HttpStatus.NOT_FOUND);
         } catch (NullPointerException e) {
             throw new ApiRequestException("Member with id " + memberId + " not found!", HttpStatus.NOT_FOUND);
